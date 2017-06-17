@@ -1,0 +1,16 @@
+<table *ngIf="vertrektijden && vertrektijden.length > 0">
+  <thead>
+    <tr>
+      <th>Tijd</th><th>Naar</th><th>Vervoerder</th><th>Materieel</th><th>Drukte</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vertrektijd of vertrektijden">
+      <td>{{vertrektijd.vertrek}}</td>
+      <td>{{vertrektijd.bestemming}}</td>
+      <td>{{vertrektijd.vervoerder}} {{vertrektijd.soort}}</td>
+      <td>{{vertrektijd.vleugels}}</td>
+      <td><app-treindrukte [station]="station" [vertrektijd]="vertrektijd"></app-treindrukte></td>
+    </tr>
+  </tbody>
+</table>
