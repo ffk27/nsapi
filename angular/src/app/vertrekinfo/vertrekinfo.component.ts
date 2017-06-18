@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Station} from "../station";
+import {Station} from "../model/station";
 
 @Component({
   selector: 'app-vertrekinfo',

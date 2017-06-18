@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TreindrukteService} from "../treindrukte.service";
-import {Drukte} from "../drukte";
-import {Vertrektijd} from "../vertrektijd";
-import {Station} from "../station";
+import {TreindrukteService} from "../services/treindrukte.service";
+import {Drukte} from "../model/drukte";
+import {Vertrektijd} from "../model/vertrektijd";
+import {Station} from "../model/station";
 
 @Component({
   selector: 'app-treindrukte',

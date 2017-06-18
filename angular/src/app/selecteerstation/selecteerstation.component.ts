@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {StationService} from "../station.service";
-import {Station} from "../station";
+import {StationService} from "../services/station.service";
+import {Station} from "../model/station";
 
 @Component({
   selector: 'app-selecteerstation',

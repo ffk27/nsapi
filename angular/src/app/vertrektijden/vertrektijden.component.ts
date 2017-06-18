@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Station} from "../station";
-import {Vertrektijd} from "../vertrektijd";
-import {VertrektijdService} from "../vertrektijd.service";
+import {Station} from "../model/station";
+import {Vertrektijd} from "../model/vertrektijd";
+import {VertrektijdService} from "../services/vertrektijd.service";
 
 @Component({
   selector: 'app-vertrektijden',

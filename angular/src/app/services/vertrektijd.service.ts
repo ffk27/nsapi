@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Vertrektijd} from "./vertrektijd";
+import {Vertrektijd} from "../model/vertrektijd";
 import {Http, URLSearchParams} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
-import {Station} from "./station";
+import {Station} from "../model/station";
 
 @Injectable()
 export class VertrektijdService {

@@ -4,7 +4,7 @@ export class Vertrektijd {
   bestemming: string;
   vleugels: [{
     bestemming: string;
-    mat: [any]
+    mat: [[string]]
   }];
   vervoerder: string;
   spoor: string;
@@ -15,8 +15,8 @@ export class Vertrektijd {
   opgeheven: boolean;
   vertrek: string;
   sprWijziging:boolean;
-  // opmerkingen[];
-  // tips[];
+  opmerkingen: [any];
+  tips: [any];
   id: string;
   werkelijkVertrekU: number;
   aftelTijd: number;

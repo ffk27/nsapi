@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Station} from "./station";
+import {Station} from "../model/station";
 import {Http, URLSearchParams} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
