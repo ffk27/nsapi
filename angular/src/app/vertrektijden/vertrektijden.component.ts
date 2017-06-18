@@ -28,4 +28,13 @@ export class VertrektijdenComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  getMaterieel(vleugels) {
+    let materieel = '';
+    for (let vleugel of vleugels) {
+      for (let mat of vleugel.mat) {
+        materieel += mat[0] + ' ';
+      }
+    }
+    return materieel;
+  }
 }

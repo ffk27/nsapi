@@ -21,11 +21,15 @@ export class TreindrukteService {
     params.append('tijd', datestring);
     params.append('vertrekstation', station.stationscode);
 
-    return this.http.get(this.api, {search: params}).toPromise().then(res => res.json() as Drukte)
+    return this.http.get(this.api, {search: params}).toPromise().then(res => {
+      if (res.status === 204) {
+        throw {error: 204};
+      }
+      return res.json() as Drukte
+    })
       .catch(e => {
         return {error: e.status};
       });
-
   }
 
   pad(number: number): string {

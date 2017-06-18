@@ -1,4 +1,5 @@
-Station: <input #q type="text" (keyup)="zoek(q.value)">
+<label for="q">Station:</label>
+<input #q id="q" type="text" class="form-control" (keyup)="zoek(q.value)">
 <table *ngIf="stations && stations.length > 0">
   <tr *ngFor="let station of stations">
     <td (click)="selecteer(station); q.value = station.naam">{{station.naam}}</td>
