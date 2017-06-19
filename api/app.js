@@ -3,13 +3,21 @@
  */
 require('./proxy').startProxy(8012);
 
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const express = require('express');
-const app = express();
+const router = express.Router();
+const api = express();
 
-app.get('/', function (req, res) {
-    res.send('Hello World!')
-});
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/treininfo');
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-});
+api.use(bodyParser.urlencoded({extended: true}));
+api.use(bodyParser.json());
+api.use(cors());
+api.use('/api', router);
+api.use('/assets', express.static(__dirname + '/assets'));
+api.listen(3000);
+
+require('./routes')(router);

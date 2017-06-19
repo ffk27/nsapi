@@ -9,7 +9,7 @@
       <td>{{vertrektijd.vertrek}}</td>
       <td>{{vertrektijd.bestemming}}</td>
       <td>{{vertrektijd.vervoerder}} {{vertrektijd.soort}}</td>
-      <td>{{getMaterieel(vertrektijd.vleugels)}}</td>
+      <td>{{vertrektijd.getMaterieel}}</td>
       <td><app-treindrukte [station]="station" [vertrektijd]="vertrektijd"></app-treindrukte></td>
     </tr>
   </tbody>
