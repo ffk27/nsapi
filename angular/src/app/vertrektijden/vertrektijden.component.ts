@@ -1,17 +1,17 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Station} from "../model/station";
-import {Vertrektijd} from "../model/vertrektijd";
-import {VertrektijdService} from "../services/vertrektijd.service";
+import {Departure} from "../model/departure";
+import {DepartureService} from "../services/departure.service";
 
 @Component({
   selector: 'app-vertrektijden',
   templateUrl: './vertrektijden.component.html',
   styleUrls: ['./vertrektijden.component.css'],
-  providers: [VertrektijdService]
+  providers: [DepartureService]
 })
 export class VertrektijdenComponent implements OnInit, OnChanges {
   @Input() station: Station;
-  vertrektijden: [Vertrektijd];
+  vertrektijden: [Departure];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.station && this.station) {
@@ -23,18 +23,30 @@ export class VertrektijdenComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor(private vertrektijdService: VertrektijdService) { }
+  constructor(private vertrektijdService: DepartureService) { }
 
   ngOnInit() {
   }
 
-  getMaterieel(vertrektijd: Vertrektijd): string {
+  getMaterieel(vertrektijd: Departure): string {
     let materieel = '';
-    for (let vleugel of vertrektijd.vleugels) {
-      for (let mat of vleugel.mat) {
-        materieel += mat[0] + ' ';
+    for (let vleugel of vertrektijd.wings) {
+      for (let mat of vleugel.material) {
+        materieel += mat.type + ' ';
       }
     }
     return materieel;
+  }
+
+  getVertrektijd(vertrektijd: Departure): string {
+    const date = new Date(vertrektijd.departureTime);
+    return this.pad(date.getHours()) + ':' + this.pad(date.getMinutes());
+  }
+
+  pad(number: number): string {
+    if (number < 10) {
+      return '0' + number;
+    }
+    return ''+number;
   }
 }

@@ -6,9 +6,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let vertrektijd of vertrektijden">
-      <td>{{vertrektijd.vertrek}}</td>
-      <td>{{vertrektijd.bestemming}}</td>
-      <td>{{vertrektijd.vervoerder}} {{vertrektijd.soort}}</td>
+      <td>{{getVertrektijd(vertrektijd)}}</td>
+      <td>{{vertrektijd.destination}}</td>
+      <td>{{vertrektijd.company}} {{vertrektijd.transportType}}</td>
       <td>{{getMaterieel(vertrektijd)}}</td>
       <td><app-treindrukte [station]="station" [vertrektijd]="vertrektijd"></app-treindrukte></td>
     </tr>

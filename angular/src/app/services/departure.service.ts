@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import {Vertrektijd} from "../model/vertrektijd";
+import {Departure} from "../model/departure";
 import {Http, URLSearchParams} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
 import {Station} from "../model/station";
 
 @Injectable()
-export class VertrektijdService {
-  api = 'http://localhost:8012/https://www.rijdendetreinen.nl/ajax/vertrektijden';
+export class DepartureService {
+  api = 'http://localhost:8012/https://www.rijdendetreinen.nl/ajax/departures';
 
   constructor(private http: Http) { }
 
-  getVertrektijden(station: Station, sorteer = 'geplandvertrek'): Promise<[Vertrektijd]> {
+  getVertrektijden(station: Station): Promise<[Departure]> {
     let params = new URLSearchParams();
     params.append('station', station.stationscode);
-    params.append('sorteer', sorteer);
     return this.http.get(this.api, {search: params}).toPromise().then(res => {
-      return res.json().vertrektijden as [Vertrektijd]
+      return res.json().departures as [Departure]
     })
       .catch(e => { return {error: e.status}; });
   }

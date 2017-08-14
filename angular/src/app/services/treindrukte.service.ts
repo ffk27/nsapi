@@ -3,7 +3,7 @@ import {Http, Jsonp, URLSearchParams} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
 import {Drukte} from "../model/drukte";
-import {Vertrektijd} from "../model/vertrektijd";
+import {Departure} from "../model/departure";
 import {Station} from "../model/station";
 
 @Injectable()
@@ -12,13 +12,11 @@ export class TreindrukteService {
 
   constructor(private jsonp: Jsonp, private http: Http) { }
 
-  getDrukte(station: Station, vertrektijd: Vertrektijd): Promise<Drukte> {
+  getDrukte(station: Station, vertrektijd: Departure): Promise<Drukte> {
     let params = new URLSearchParams();
-    params.append('rit', vertrektijd.treinNr);
-    const date = new Date(vertrektijd.werkelijkVertrekU * 1000);
-    let datestring = date.getFullYear() + '-' + this.pad(date.getMonth() + 1) + '-' + this.pad(date.getDate());
-    datestring += 'T' + vertrektijd.vertrek;
-    params.append('tijd', datestring);
+    params.append('rit', vertrektijd.serviceNumber);
+    const date = new Date(vertrektijd.departureTime).toISOString().split(':');
+    params.append('tijd', date[0] + ':' + date[1]);
     params.append('vertrekstation', station.stationscode);
 
     return this.http.get(this.api, {search: params}).toPromise().then(res => {
@@ -30,12 +28,5 @@ export class TreindrukteService {
       .catch(e => {
         return {error: e.status};
       });
-  }
-
-  pad(number: number): string {
-    if (number < 10) {
-      return '0' + number;
-    }
-    return ''+number;
   }
 }

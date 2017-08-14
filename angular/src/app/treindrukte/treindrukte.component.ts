@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TreindrukteService} from "../services/treindrukte.service";
 import {Drukte} from "../model/drukte";
-import {Vertrektijd} from "../model/vertrektijd";
+import {Departure} from "../model/departure";
 import {Station} from "../model/station";
 
 @Component({
@@ -12,7 +12,7 @@ import {Station} from "../model/station";
 })
 export class TreindrukteComponent implements OnInit {
   @Input() station: Station;
-  @Input() vertrektijd: Vertrektijd;
+  @Input() vertrektijd: Departure;
   drukte: Drukte;
 
   constructor(private treindrukteService: TreindrukteService) { }
