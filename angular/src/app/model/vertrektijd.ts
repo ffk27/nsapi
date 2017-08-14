@@ -21,14 +21,4 @@ export class Vertrektijd {
   werkelijkVertrekU: number;
   aftelTijd: number;
   werkelijkVertrek: string;
-
-  getMaterieel(): string {
-    let materieel = '';
-    for (let vleugel of this.vleugels) {
-      for (let mat of vleugel.mat) {
-        materieel += mat[0] + ' ';
-      }
-    }
-    return materieel;
-  }
 }
