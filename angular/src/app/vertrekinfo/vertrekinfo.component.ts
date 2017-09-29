@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Station} from "../model/station";
+import {Departure} from "../model/departure";
 
 @Component({
   selector: 'app-vertrekinfo',
@@ -8,6 +9,8 @@ import {Station} from "../model/station";
 })
 export class VertrekinfoComponent implements OnInit {
   station: Station;
+  vertrektijden: [Departure];
+  gefilterdeTijden: [Departure];
 
   constructor() { }
 
@@ -16,5 +19,14 @@ export class VertrekinfoComponent implements OnInit {
 
   selecteerStation(station: Station) {
     this.station = station;
+  }
+
+  setVertrektijden(vertrektijden: [Departure]) {
+    this.vertrektijden = vertrektijden;
+    this.gefilterdeTijden = vertrektijden;
+  }
+
+  setGefilterdeTijden(vertrektijden: [Departure]) {
+    this.gefilterdeTijden = vertrektijden;
   }
 }

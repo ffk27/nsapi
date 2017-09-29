@@ -1,0 +1,5 @@
+<div id="items">
+<span class="item" *ngFor="let verv of vervoerders">
+  <input [attr.checked]="verv.enabled" type="checkbox" (click)="toggle(verv)"/> {{verv.name}} ({{verv.count}})
+</span>
+</div>

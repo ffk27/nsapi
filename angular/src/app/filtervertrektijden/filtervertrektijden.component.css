@@ -1,0 +1,10 @@
+#items {
+  border: solid darkslategray 1px;
+  border-radius: 5px;
+  padding: 0px 10px 0px 10px;
+  margin: 10px 0px 10px 0px;
+}
+
+.item {
+  margin-right: 15px;
+}

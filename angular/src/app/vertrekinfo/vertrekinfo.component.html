@@ -1,3 +1,4 @@
 <h2>Vertrektijden</h2>
 <app-selecteerstation (geselecteerd)="selecteerStation($event)"></app-selecteerstation>
-<app-vertrektijden [station]="station"></app-vertrektijden>
+<app-filtervertrektijden *ngIf="station" (gefilterdetijden)="setGefilterdeTijden($event)" [vertrektijden]="vertrektijden"></app-filtervertrektijden>
+<app-vertrektijden [station]="station" (opgehaald)="setVertrektijden($event)" [gefilterdeTijden]="gefilterdeTijden"></app-vertrektijden>

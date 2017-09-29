@@ -28,4 +28,7 @@ export class Departure {
   countdown: number;
   service_date: string;
   url: string;
+  drukte: number;
+
+  getDrukte
 }
