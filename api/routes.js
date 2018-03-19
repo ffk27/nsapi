@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * Created by ffk27 on 18-6-2017.
  */
@@ -163,21 +162,4 @@ function getDepartures(req, res) {
             return res.json(e);
         }
     });
-=======
-/**
- * Created by ffk27 on 18-6-2017.
- */
-var mongoose = require('mongoose');
-
-module.exports = function (router) {
-    router.route('/treindrukte')
-        .get(getDrukte);
-};
-
-function getDrukte(req, res) {
-    const rit = req.search.rit;
-    const tijd = req.search.tijd;
-    const vertrekstation = req.search.vertrekstation;
-    res.send(rit + '' + tijd);
->>>>>>> 5c089588b9135710fa0d6d72fa98b46389e34709
 }
