@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class StationService {
-  api = 'http://localhost:8012/http://www.ns.nl/reisinfo-api/service/stations/';
+  api = 'http://localhost:3000/api/stations/';
 
   constructor(private http: Http) { }
 

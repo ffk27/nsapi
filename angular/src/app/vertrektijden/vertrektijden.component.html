@@ -1,7 +1,7 @@
 <table *ngIf="gefilterdeTijden && gefilterdeTijden.length > 0" class="table">
   <thead>
     <tr>
-      <th>Tijd</th><th>Naar</th><th>Vervoerder</th><th>Materieel</th><th (click)="alleDruktes()">Drukte</th>
+      <th>Tijd</th><th>Naar</th><th>Vervoerder</th><th>Materieel</th><th (click)="alleDruktes()">Drukte</th><th>Aantal reizigers</th>
     </tr>
   </thead>
   <tbody>
@@ -11,6 +11,7 @@
       <td>{{vertrektijd.company}} {{vertrektijd.transportType}}</td>
       <td>{{getMaterieel(vertrektijd)}}</td>
       <td (click)="getDrukte(vertrektijd)">{{vertrektijd.drukte}}</td>
+      <td *ngIf="vertrektijd.aantalMensen">{{vertrektijd.aantalMensen | number }}</td>
     </tr>
   </tbody>
 </table>

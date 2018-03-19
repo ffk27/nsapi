@@ -29,6 +29,6 @@ export class Departure {
   service_date: string;
   url: string;
   drukte: number;
-
+  aantalMensen: number;
   getDrukte
 }

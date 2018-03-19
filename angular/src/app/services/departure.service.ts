@@ -7,7 +7,7 @@ import {Station} from "../model/station";
 
 @Injectable()
 export class DepartureService {
-  api = 'http://localhost:8012/https://www.rijdendetreinen.nl/ajax/departures';
+  api = 'http://localhost:3000/api/departures';
 
   constructor(private http: Http) { }
 

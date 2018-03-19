@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import {Http, URLSearchParams} from "@angular/http";
-
-import 'rxjs/add/operator/toPromise';
-import {Drukte} from "../model/drukte";
-import {Departure} from "../model/departure";
-import {Station} from "../model/station";
 import {VertrektijdenComponent} from "../vertrektijden/vertrektijden.component";
+import {Station} from "../model/station";
+import {Departure} from "../model/departure";
+import {Treininfo} from "../model/treininfo";
 
 @Injectable()
-export class TreindrukteService {
-  api = 'http://localhost:3000/api/treindrukte';
+export class TreininfoService {
+  api = 'http://localhost:3000/api/treininfo';
 
   constructor(private http: Http) { }
 
-  getDrukte(station: Station, vertrektijd: Departure): Promise<Drukte> {
+  getDrukte(station: Station, vertrektijd: Departure): Promise<Treininfo> {
     let params = new URLSearchParams();
     params.append('rit', vertrektijd.serviceNumber);
     const departuredate = new Date(vertrektijd.departureTime);
@@ -21,7 +19,6 @@ export class TreindrukteService {
     const datum = departuredate.getFullYear() + '-'
       + VertrektijdenComponent.pad(departuredate.getMonth() + 1) + '-'
       + VertrektijdenComponent.pad(departuredate.getDate());
-    console.log(datum + 'T' + time);
     params.append('tijd', datum + 'T' + time);
     params.append('vertrekstation', station.stationscode);
 
@@ -29,10 +26,9 @@ export class TreindrukteService {
       if (res.status === 204) {
         throw {error: 204};
       }
-      return res.json() as Drukte
-    })
-      .catch(e => {
+      return res.json() as Treininfo
+    }).catch(e => {
         return {error: e.status};
-      });
+    });
   }
 }

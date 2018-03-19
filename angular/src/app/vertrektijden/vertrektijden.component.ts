@@ -3,12 +3,13 @@ import {Station} from "../model/station";
 import {Departure} from "../model/departure";
 import {DepartureService} from "../services/departure.service";
 import {TreindrukteService} from "../services/treindrukte.service";
+import {TreininfoService} from "../services/treininfo.service";
 
 @Component({
   selector: 'app-vertrektijden',
   templateUrl: './vertrektijden.component.html',
   styleUrls: ['./vertrektijden.component.css'],
-  providers: [DepartureService, TreindrukteService]
+  providers: [DepartureService, TreindrukteService, TreininfoService]
 })
 export class VertrektijdenComponent implements OnInit, OnChanges {
   @Input() station: Station;
@@ -25,7 +26,9 @@ export class VertrektijdenComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor(private vertrektijdService: DepartureService, private treindrukteService: TreindrukteService) { }
+  constructor(private vertrektijdService: DepartureService,
+              private treindrukteService: TreindrukteService,
+              private treininfoService: TreininfoService) { }
 
   ngOnInit() {
   }
@@ -41,11 +44,15 @@ export class VertrektijdenComponent implements OnInit, OnChanges {
   }
 
   getVertrektijd(vertrektijd: Departure): string {
-    const date = new Date(vertrektijd.departureTime);
-    return this.pad(date.getHours()) + ':' + this.pad(date.getMinutes());
+    return VertrektijdenComponent.getVertrektijd(vertrektijd);
   }
 
-  pad(number: number): string {
+  static getVertrektijd(vertrektijd: Departure): string {
+    const date = new Date(vertrektijd.departureTime);
+    return VertrektijdenComponent.pad(date.getHours()) + ':' + VertrektijdenComponent.pad(date.getMinutes());
+  }
+
+  static pad(number: number): string {
     if (number < 10) {
       return '0' + number;
     }
@@ -62,6 +69,22 @@ export class VertrektijdenComponent implements OnInit, OnChanges {
     this.treindrukteService.getDrukte(this.station, vertrektijd).then(res => {
       if (!res['error']) {
         vertrektijd.drukte = res.drukte;
+        this.getTreininfo(vertrektijd);
+      }
+    });
+  }
+
+  getTreininfo(vertrektijd: Departure) {
+    this.treininfoService.getDrukte(this.station, vertrektijd).then(res => {
+      if (!res['error']) {
+        let zitplaatsen = 0;
+        res && res.info && res.info.forEach(info => {
+          info && info.materieeldelen && info.materieeldelen.forEach(matdeel => {
+            zitplaatsen += matdeel.mat.zitplaatsen.klapstoelTweedeKlas;
+            zitplaatsen += matdeel.mat.zitplaatsen.zitplaatsTweedeKlas;
+          })
+        });
+        vertrektijd.aantalMensen = zitplaatsen / 100 * vertrektijd.drukte;
       }
     });
   }
