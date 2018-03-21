@@ -1,6 +1,6 @@
 # Vertrektijden
 
-Dit is een hobby-project en is puur voor eigen gebruik. De programmatuur verbindt meerdere api's met elkaar.
+Dit is een hobby-project en is puur bedoeld voor eigen gebruik. De programmatuur verbindt meerdere api's met elkaar.
 
 Installatie:
 1) Installeer MongoDB
