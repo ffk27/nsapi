@@ -1,0 +1,32 @@
+<table *ngIf="gefilterdeTijden && gefilterdeTijden.length > 0" class="table">
+  <thead>
+    <tr>
+      <th>Rit</th>
+      <th>Tijd</th>
+      <th>Naar</th>
+      <th>Vervoerder</th>
+      <th>Materieel</th>
+      <th (click)="alleDruktes()">Drukte</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vertrektijd of gefilterdeTijden">
+      <td>{{vertrektijd.id}}</td>
+      <td>{{vertrektijd.getVertrektijd()}}</td>
+      <td>{{vertrektijd.destination}}</td>
+      <td>{{vertrektijd.company}} {{vertrektijd.transportType}}</td>
+      <td>{{vertrektijd.getMaterieel()}}</td>
+      <td (click)="getDrukte(vertrektijd)">
+        <svg class="icon-busy" role="img">
+          <use *ngIf="!vertrektijd.drukte" xlink:href="assets/img/svg-defs.svg#icon-busy-0"></use>
+          <use *ngIf="vertrektijd.drukte < 50" xlink:href="assets/img/svg-defs.svg#icon-busy-1"></use>
+          <use *ngIf="(vertrektijd.drukte >= 50 && vertrektijd.drukte < 80)" xlink:href="assets/img/svg-defs.svg#icon-busy-2"></use>
+          <use *ngIf="vertrektijd.drukte >= 80" xlink:href="assets/img/svg-defs.svg#icon-busy-3"></use>
+        </svg>
+        <span *ngIf="vertrektijd.drukte">
+          {{vertrektijd.drukte}}% / {{vertrektijd.aantalMensen | number : '1.0-0' }}
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

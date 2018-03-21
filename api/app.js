@@ -18,7 +18,7 @@ api.use(bodyParser.json());
 api.use(cors());
 api.use('/api', router);
 api.use('/assets', express.static(__dirname + '/assets'));
-api.use('/webapp', express.static(__dirname + '/webapp'));
+api.use('/', express.static(__dirname + '/webapp'));
 api.listen(3000);
 
 require('./routes')(router);
