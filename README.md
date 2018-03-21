@@ -1,5 +1,5 @@
 # Vertrektijden
-![alt tag](https://raw.githubusercontent.com/ffk27/vertrektijden/master/vertrektijden.png)
+
 Dit is een hobby-project en is puur voor eigen gebruik. De programmatuur verbindt meerdere api's met elkaar.
 
 Installatie:
@@ -9,3 +9,6 @@ Installatie:
 4) npm run build
 5) cd ../api/ && npm start
 6) Navigeer naar http://localhost:3000/
+
+Voorbeeld:
+![alt tag](https://raw.githubusercontent.com/ffk27/vertrektijden/master/vertrektijden.png)
